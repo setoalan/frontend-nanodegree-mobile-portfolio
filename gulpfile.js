@@ -14,7 +14,7 @@ gulp.task('clean', () => {
 });
 
 gulp.task('css', () => {
-  gulp.src(['src/**/*.css'], { base: 'dist' })
+  return gulp.src(['src/**/*.css'])
     .pipe(plumber({
       handleError: (err) => {
         console.log(err);
@@ -28,7 +28,7 @@ gulp.task('css', () => {
 });
 
 gulp.task('js', () => {
-  gulp.src(['src/**/*.js'], { base: 'dist' })
+  return gulp.src(['src/**/*.js'])
     .pipe(plumber({
       handleError: (err) => {
         console.log(err);
@@ -40,7 +40,7 @@ gulp.task('js', () => {
 });
 
 gulp.task('html', () => {
-  gulp.src(['src/**/*.html'])
+  return gulp.src(['src/**/*.html'])
     .pipe(plumber({
       handleError: (err) => {
         console.log(err);
@@ -51,7 +51,7 @@ gulp.task('html', () => {
 });
 
 gulp.task('image', () => {
-  gulp.src(['src/**/*'])
+  return gulp.src(['src/**/*.jpg', 'src/**/*.png'])
     .pipe(plumber({
       handleError: (err) => {
         console.log(err);
@@ -63,10 +63,10 @@ gulp.task('image', () => {
 });
 
 gulp.task('watch', () => {
-  gulp.watch('src/js/**/*.js', ['js']);
-  gulp.watch('src/css/**/*.css', ['css']);
+  gulp.watch('src/**/*.js', ['js']);
+  gulp.watch('src/**/*.css', ['css']);
   gulp.watch('src/**/*.html', ['html']);
-  gulp.watch('src/img/**/*', ['image']);
+  gulp.watch(['src/**/*.jpg', 'src/**/*.png'], ['image']);
 });
 
 gulp.task('build', ['clean'], () => {
