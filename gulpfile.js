@@ -7,6 +7,7 @@ const autoPrefixer = require('gulp-autoprefixer');
 const cssComb = require('gulp-csscomb');
 const cleanCss = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
+const htmlmin = require('gulp-htmlmin');
 const imageMin = require('gulp-imagemin');
 
 gulp.task('clean', () => {
@@ -47,6 +48,7 @@ gulp.task('html', () => {
         this.emit('end');
       }
     }))
+    .pipe(htmlmin({ collapseWhitespace: true, minifyJS: true }))
     .pipe(gulp.dest('dist'))
 });
 
